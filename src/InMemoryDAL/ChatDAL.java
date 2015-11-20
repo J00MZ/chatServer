@@ -20,9 +20,10 @@ public class ChatDAL implements IChatDAL {
 	}
 
 	@Override
-	public void RegisterUser(String username, String name, String password) {
-		// TODO Auto-generated method stub
+	public boolean RegisterUser(String username, String name, String password) {
+		boolean rs = false;
 		if (IsUserExists(username)){
+		
 			throw new UserExistsException(); 
 		}
 		else{
@@ -34,9 +35,10 @@ public class ChatDAL implements IChatDAL {
 			userData.set_registration(registration);
 			userData.set_status(false);//not logged on
 			_data.AddUserData(username, userData);
+			rs = true;
 			
 		}
-			
+		return rs;	
 		
 	}
 

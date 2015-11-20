@@ -10,50 +10,21 @@ import interfaces.IChatDAL;
 
 public class ChatDAL implements IChatDAL {
 
-	Connection _connection; 
+	Connection _connection;
+	String _url;
 	public ChatDAL(){
-		try {
-			String url = "jdbc:odbc:chatDB";
-			Connection conn = DriverManager.getConnection(url);
-			
-			
-			Statement stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT * FROM students");
-			while (rs.next()){
-				System.out.println(rs.getString("name"));
-			}
-			if  (!studentExists(conn,"az@oodidactics.com")){
-				stmt.executeUpdate("insert into students (id,name,address) select 'az@oodidactics.com','avi','blas alasal '");
-			}
-			else{
-				System.out.println("username or nickname already exists");
-			}
-			conn.close();
-			
-
-		}
-		
-		catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
+		_url = "jdbc:odbc:ChatDB;Uid=sa;Pwd=Kivun1234";
 	}
 	@Override
 	public boolean IsUserExists(String username) {
 		// TODO Auto-generated method stub
-		
-		int cnt = 0; 
+		getConnection();
 		try {
 			Statement stmt = _connection.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT count(*) as cnt FROM users where username='"+username+"'");
-			while (rs.next()){
-				cnt = rs.getInt("cnt");
-				
+			ResultSet rs = stmt.executeQuery("SELECT * FROM users where username='"+username+"'");
+			return rs.next(); 
 			
-			}
-			_connection.close();
-			return cnt == 1;
+
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -61,14 +32,41 @@ public class ChatDAL implements IChatDAL {
 			throw new IsUserExistsException(); 
 			
 		}
+		
+		finally{
+			try {
+				_connection.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				throw new ConnectionCloseException(); 
+			}
+		}
 	
 	
 	}
-
+	private void  getConnection(){
+		try {
+			_connection = DriverManager.getConnection(_url);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			throw new ConnectioOpenException();
+		}
+	}
 	@Override
-	public void RegisterUser(String username, String name, String password) {
-		// TODO Auto-generated method stub
+	public boolean RegisterUser(String username, String name, String password) {
+		Statement stmt;
+		boolean rs;
+		try {
+			stmt = _connection.createStatement();
+			
+			 rs = stmt.execute("INSERT INTO users VALUES('"+username+"','"+name+"','"+password+"')");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			rs = false;
+		}
 		
+		return rs;
 	}
 
 	@Override
@@ -90,5 +88,7 @@ public class ChatDAL implements IChatDAL {
 	}
 	
 	public class IsUserExistsException extends RuntimeException{}
+	public class ConnectionCloseException extends RuntimeException{}
+	public class ConnectioOpenException extends RuntimeException{} 
 
 }

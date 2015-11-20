@@ -2,15 +2,13 @@ package Services;
 
 import interfaces.IRegistrationService;
 import interfaces.IRegistrationSucceededResponse;
-
 import interfaces.IRegistrationUserExistsResponse;
 import DTO.RegistrationDTO;
 import DTO.RegistrationResultDTO;
-import InMemoryDAL.ChatDAL;
 import Kivun.Infra.DTO.ServiceMessage;
 import Kivun.Infra.Interfaces.IDTO;
-
 import Kivun.Infra.Interfaces.IServiceMessage;
+import SQLServerDAL.ChatDAL;
 
 public class RegistrationService implements IRegistrationService {
 
@@ -42,6 +40,7 @@ public class RegistrationService implements IRegistrationService {
 			
 		}
 		else{
+			_dal.RegisterUser(_dto.get_username(), _dto.get_name(), _dto.get_password());
 			//registration succeeded
 			_response.set_Handler(IRegistrationSucceededResponse.class);
 		}
@@ -52,7 +51,7 @@ public class RegistrationService implements IRegistrationService {
 	public IServiceMessage get_Response() {
 		// TODO Auto-generated method stub
 		
-		return null;
+		return _response;
 	}
 
 	@Override
