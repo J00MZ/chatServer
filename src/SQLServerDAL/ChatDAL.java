@@ -5,7 +5,9 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
+import DTO.UserDTO;
 import interfaces.IChatDAL;
 
 public class ChatDAL implements IChatDAL {
@@ -89,6 +91,11 @@ public class ChatDAL implements IChatDAL {
 	
 	public class IsUserExistsException extends RuntimeException{}
 	public class ConnectionCloseException extends RuntimeException{}
-	public class ConnectioOpenException extends RuntimeException{} 
+	public class ConnectioOpenException extends RuntimeException{}
+	@Override
+	public ArrayList<UserDTO> getAllUsers() {
+		// TODO Auto-generated method stub
+		return null;
+	} 
 
 }

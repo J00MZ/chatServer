@@ -10,14 +10,14 @@ import java.util.Map.Entry;
 
 import DTO.RegistrationDTO;
 import DTO.UserDTO;
-import DTO.UsersListDTO;
-import interfaces.IChatDAL;
 
-public class ChatDAL implements IChatDAL {
+import interfaces.IMessagesDAL;
+
+public class MessagesDAL implements IMessagesDAL {
 
 	//UserName will be the key of the hashmap 
 	InMemoryData _data; 
-	public  ChatDAL(){
+	public  MessagesDAL(){
 		_data = InMemoryData.Instance();
 	}
 	@Override

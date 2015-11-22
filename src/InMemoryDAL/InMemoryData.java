@@ -27,7 +27,9 @@ public class InMemoryData {
 		return _data.containsKey(key);
 	}
 	
-	
+	public HashMap<String,UserData>getAllUsers(){
+		return _data;
+	}
 	
 	
 	

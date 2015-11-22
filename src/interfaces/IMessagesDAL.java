@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import DTO.UserDTO;
 
 
-public interface IChatDAL {
+public interface IMessagesDAL {
 	boolean IsUserExists(String username);
 	boolean RegisterUser(String username,String name,String password);
 	String GetPassword(String username);
