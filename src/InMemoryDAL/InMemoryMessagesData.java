@@ -18,8 +18,11 @@ public class InMemoryMessagesData {
 	public void AddMessageData(String key,MessageData mData){
 		_data.put(key, mData);
 	}
-	
-	public MessageData getUserData(String key){
+	public void UpdateMessageData(String key,Message message){
+		MessageData mData =  getMessageData(key);
+		mData.Add(message);
+	}
+	public MessageData getMessageData(String key){
 		return _data.get(key);
 	}
 	

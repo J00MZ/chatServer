@@ -3,11 +3,15 @@ package Services;
 import interfaces.ILoginFaildResponse;
 import interfaces.ILoginService;
 import interfaces.ILoginSucceededResponse;
+import interfaces.ISendingMessageFaildResponse;
+import interfaces.ISendingMessageSucceededResponse;
 import DTO.LoginDTO;
 import DTO.LoginResultDTO;
 import DTO.MessageDTO;
+import DTO.MessageResultDTO;
 import InMemoryDAL.ChatDAL;
 import InMemoryDAL.ChatDAL.UserNotExistsException;
+import InMemoryDAL.MessagesDAL;
 import Kivun.Infra.DTO.ServiceMessage;
 import Kivun.Infra.Interfaces.IDTO;
 import Kivun.Infra.Interfaces.IServiceMessage;
@@ -16,11 +20,11 @@ import Kivun.Infra.Interfaces.IServiceMessage;
 public class MessageService implements ILoginService {
 
 	MessageDTO _dto; 
-	ChatDAL _dal; 
+	MessagesDAL _dal; 
 	IServiceMessage _response;  
 	
 	public MessageService(){
-		_dal = new ChatDAL(); 
+		_dal = new MessagesDAL(); 
 	}
 	@Override
 	public void set_Params(IDTO dto) {
@@ -31,15 +35,15 @@ public class MessageService implements ILoginService {
 	@Override
 	public void Execute() {
 		// TODO Auto-generated method stub
-		LoginResultDTO resultDTO = new LoginResultDTO();
+		MessageResultDTO resultDTO = new MessageResultDTO();
 		_response = new ServiceMessage();
-		resultDTO.set_username(_dto.get_username());
+		resultDTO.set_sender(_dto.get_sender());
 		_response.set_DTO(resultDTO);
 		try{
-		_dal.UpdateUserStatus(_dto.get_username(),true);
-		_response.set_Handler(ILoginSucceededResponse.class);
+		_dal.AddMessage(_dto);
+		_response.set_Handler(ISendingMessageSucceededResponse.class);
 		}catch(UserNotExistsException e){
-			_response.set_Handler(ILoginFaildResponse.class);
+			_response.set_Handler(ISendingMessageFaildResponse.class);
 		}
 	
 		
