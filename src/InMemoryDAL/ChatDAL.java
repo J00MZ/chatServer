@@ -122,14 +122,14 @@ public class ChatDAL implements IChatDAL {
 			if(IsKeyUserExists(username)){
 			
 				
-				m.set_message(dto.get_sender());
+				m.set_message(dto.get_message());
 				m.set_sender(dto.get_sender());
 			
 				_data.UpdateMessageData(username, m);
 			}else{
 				MessageData md = new MessageData();
 			
-				m.set_message(dto.get_sender());
+				m.set_message(dto.get_message());
 				m.set_sender(dto.get_sender());
 				md.Add(m);
 				_data.AddMessageData(username, md);

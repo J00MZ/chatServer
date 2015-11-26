@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import DTO.Message;
+import DTO.MessageDTO;
 import DTO.UserDTO;
 import interfaces.IChatDAL;
 
@@ -94,6 +96,21 @@ public class ChatDAL implements IChatDAL {
 	public class ConnectioOpenException extends RuntimeException{}
 	@Override
 	public ArrayList<UserDTO> getAllUsers() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public boolean IsKeyUserExists(String username) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	@Override
+	public boolean AddMessage(MessageDTO dto) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	@Override
+	public ArrayList<Message> GetAllMessages(String key) {
 		// TODO Auto-generated method stub
 		return null;
 	} 

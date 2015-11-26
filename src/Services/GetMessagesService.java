@@ -47,7 +47,7 @@ public class GetMessagesService implements IGetMessagesService {
 			ArrayList<Message> messages=_dal.GetAllMessages(_dto.get_username());
 			resultDTO.set_messages(messages);
 		_response.set_Handler(IGetMessagesSucceededResponse.class);
-		_response.set_DTO(_dto);
+		_response.set_DTO(resultDTO);
 		}catch(UserNotExistsException e){
 			_response.set_Handler(IGetMessagesFaildResponse.class);
 		}
