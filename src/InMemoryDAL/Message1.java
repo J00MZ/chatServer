@@ -1,6 +1,6 @@
 package InMemoryDAL;
 
-public class Message {
+public class Message1 {
  private String _sender;
 
 public String get_sender() {

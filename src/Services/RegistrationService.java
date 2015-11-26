@@ -5,10 +5,11 @@ import interfaces.IRegistrationSucceededResponse;
 import interfaces.IRegistrationUserExistsResponse;
 import DTO.RegistrationDTO;
 import DTO.RegistrationResultDTO;
+import InMemoryDAL.ChatDAL;
 import Kivun.Infra.DTO.ServiceMessage;
 import Kivun.Infra.Interfaces.IDTO;
 import Kivun.Infra.Interfaces.IServiceMessage;
-import SQLServerDAL.ChatDAL;
+
 
 public class RegistrationService implements IRegistrationService {
 

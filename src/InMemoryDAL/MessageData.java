@@ -2,6 +2,8 @@ package InMemoryDAL;
 
 import java.util.ArrayList;
 
+import DTO.Message;
+
 
 
 public class MessageData {

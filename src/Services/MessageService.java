@@ -3,6 +3,7 @@ package Services;
 import interfaces.ILoginFaildResponse;
 import interfaces.ILoginService;
 import interfaces.ILoginSucceededResponse;
+import interfaces.IMessageService;
 import interfaces.ISendingMessageFaildResponse;
 import interfaces.ISendingMessageSucceededResponse;
 import DTO.LoginDTO;
@@ -16,20 +17,20 @@ import Kivun.Infra.DTO.ServiceMessage;
 import Kivun.Infra.Interfaces.IDTO;
 import Kivun.Infra.Interfaces.IServiceMessage;
 
+public class MessageService implements IMessageService {
 
-public class MessageService implements ILoginService {
+	MessageDTO _dto;
+	ChatDAL _dal;
+	IServiceMessage _response;
 
-	MessageDTO _dto; 
-	MessagesDAL _dal; 
-	IServiceMessage _response;  
-	
-	public MessageService(){
-		_dal = new MessagesDAL(); 
+	public MessageService() {
+		_dal = new ChatDAL();
 	}
+
 	@Override
 	public void set_Params(IDTO dto) {
 		// TODO Auto-generated method stub
-		_dto = (MessageDTO)dto; 
+		_dto = (MessageDTO) dto;
 	}
 
 	@Override
@@ -39,20 +40,19 @@ public class MessageService implements ILoginService {
 		_response = new ServiceMessage();
 		resultDTO.set_sender(_dto.get_sender());
 		_response.set_DTO(resultDTO);
-		try{
-		_dal.AddMessage(_dto);
-		_response.set_Handler(ISendingMessageSucceededResponse.class);
-		}catch(UserNotExistsException e){
+		try {
+			_dal.AddMessage(_dto);
+			_response.set_Handler(ISendingMessageSucceededResponse.class);
+		} catch (UserNotExistsException e) {
 			_response.set_Handler(ISendingMessageFaildResponse.class);
 		}
-	
-		
+
 	}
 
 	@Override
 	public IServiceMessage get_Response() {
 		// TODO Auto-generated method stub
-		
+
 		return _response;
 	}
 

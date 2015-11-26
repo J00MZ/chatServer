@@ -2,6 +2,8 @@ package InMemoryDAL;
 
 import java.util.HashMap;
 
+import DTO.Message;
+
 public class InMemoryMessagesData {
 	HashMap<String,MessageData> _data;
 	private static InMemoryMessagesData _instance = null; 

@@ -2,7 +2,10 @@ package interfaces;
 
 import java.util.ArrayList;
 
+import DTO.Message;
+import DTO.MessageDTO;
 import DTO.UserDTO;
+import InMemoryDAL.MessageData;
 
 
 public interface IChatDAL {
@@ -12,5 +15,9 @@ public interface IChatDAL {
 	void UpdateUserStatus(String username, boolean status); 
 	boolean GetUserStatus(String username);
 	ArrayList<UserDTO>getAllUsers();
+	boolean IsKeyUserExists(String username);
+	 
+	boolean AddMessage(MessageDTO dto);
+	ArrayList<Message> GetAllMessages(String key);
 
 }

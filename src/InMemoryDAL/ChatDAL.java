@@ -8,15 +8,20 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import DTO.Message;
+import DTO.MessageDTO;
 import DTO.RegistrationDTO;
 import DTO.UserDTO;
 import DTO.UsersListDTO;
+import InMemoryDAL.MessagesDAL.AddMessageFaildException;
+import InMemoryDAL.MessagesDAL.UserKeyMessagesNotFoundException;
 import interfaces.IChatDAL;
 
 public class ChatDAL implements IChatDAL {
 
 	//UserName will be the key of the hashmap 
 	InMemoryData _data; 
+	
 	public  ChatDAL(){
 		_data = InMemoryData.Instance();
 	}
@@ -105,5 +110,41 @@ public class ChatDAL implements IChatDAL {
 		}
 		return retVal;
 	}
-
+	@Override
+	public boolean IsKeyUserExists(String username) {
+		// TODO Auto-generated method stub
+		return _data._mData.containsKey(username);
+	}
+	@Override
+	public boolean AddMessage(MessageDTO dto) throws AddMessageFaildException {
+		for(String username: dto.get_recievers()){
+			Message m = new Message();
+			if(IsKeyUserExists(username)){
+			
+				
+				m.set_message(dto.get_sender());
+				m.set_sender(dto.get_sender());
+			
+				_data.UpdateMessageData(username, m);
+			}else{
+				MessageData md = new MessageData();
+			
+				m.set_message(dto.get_sender());
+				m.set_sender(dto.get_sender());
+				md.Add(m);
+				_data.AddMessageData(username, md);
+			}
+		}
+		
+		return true;
+	}
+	@Override
+	public ArrayList<Message> GetAllMessages(String key) {
+		if(!IsKeyUserExists(key)){
+			throw new UserKeyMessagesNotFoundException();
+		}
+		return _data.getMessageData(key).get_messages();
+	}
+	public class UserKeyMessagesNotFoundException extends RuntimeException{} 
+	public class AddMessageFaildException extends RuntimeException{}
 }

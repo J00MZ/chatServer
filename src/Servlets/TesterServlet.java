@@ -188,15 +188,15 @@ public class TesterServlet extends HttpServlet {
 	}
 	private void GetServiceNames(HttpServletRequest request, HttpServletResponse response){
 			String beginHTML = "<html>";
-			String beginHEAD = "<head><title>List Of Calculator Services</title>";
+			String beginHEAD = "<head><title>List Of Users and Messaging Services</title>";
 			String endHEAD = "</head>";
 			String endHTML = "</html>";
-			String h1 = "<h1> Services List for Calculator</h1>";
+			String h1 = "<h1> Services List for Users and Messaging</h1>";
 			String beginBody = "<body>"+ h1;
 			String endBody = "</body>";
 			String body = "";
 			for (String serviceName:_serviceList){
-				body += "<a href='ChatTester?ServiceName="+serviceName+"'>"
+				body += "<a href='TesterServlet?ServiceName="+serviceName+"'>"
 						+serviceName+"</a><br/>";
 			}
 			String html = beginHTML+ beginHEAD + endHEAD + beginBody + body +endBody + endHTML;
