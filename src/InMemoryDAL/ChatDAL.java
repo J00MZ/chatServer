@@ -12,7 +12,7 @@ import DTO.Message;
 import DTO.MessageDTO;
 import DTO.RegistrationDTO;
 import DTO.UserDTO;
-import DTO.UsersListDTO;
+import DTO.UsersListResultDTO;
 import InMemoryDAL.MessagesDAL.AddMessageFaildException;
 import InMemoryDAL.MessagesDAL.UserKeyMessagesNotFoundException;
 import interfaces.IChatDAL;
@@ -117,7 +117,9 @@ public class ChatDAL implements IChatDAL {
 	}
 	@Override
 	public boolean AddMessage(MessageDTO dto) throws AddMessageFaildException {
+	 boolean res = true ; 
 		for(String username: dto.get_recievers()){
+			if(IsUserExists(username)){
 			Message m = new Message();
 			if(IsKeyUserExists(username)){
 			
@@ -135,8 +137,8 @@ public class ChatDAL implements IChatDAL {
 				_data.AddMessageData(username, md);
 			}
 		}
-		
-		return true;
+		}
+		return res;
 	}
 	@Override
 	public ArrayList<Message> GetAllMessages(String key) {

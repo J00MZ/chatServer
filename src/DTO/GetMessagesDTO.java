@@ -6,7 +6,7 @@ import Kivun.Infra.Interfaces.IDTO;
 
 public class GetMessagesDTO implements IDTO {
 	String _username; 
-	@GetProperty(PropName="UserName")
+	@GetProperty(PropName="UserName",Type="String")
 	public String get_username() {
 		return _username;
 	}
