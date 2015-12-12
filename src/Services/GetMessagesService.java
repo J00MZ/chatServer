@@ -7,6 +7,8 @@ import interfaces.IGetMessagesService;
 import interfaces.IGetMessagesSucceededResponse;
 import interfaces.ILoginFaildResponse;
 import interfaces.ILoginSucceededResponse;
+import interfaces.IUserNotFoundResponse;
+import interfaces.IUserNotLoggedinResponse;
 import DTO.GetMessagesDTO;
 import DTO.LoginDTO;
 import DTO.LoginResultDTO;
@@ -44,10 +46,18 @@ public class GetMessagesService implements IGetMessagesService {
 	
 		_response.set_DTO(resultDTO);
 		try{
+			if (_dal.IsUserExists(_dto.get_username())) {
+				if (_dal.IsUserOnline(_dto.get_username())) {
 			ArrayList<Message> messages=_dal.GetAllMessages(_dto.get_username());
 			resultDTO.set_messages(messages);
 		_response.set_Handler(IGetMessagesSucceededResponse.class);
 		_response.set_DTO(resultDTO);
+				}else{
+					_response.set_Handler(IUserNotLoggedinResponse.class);
+				}
+			}else{
+				_response.set_Handler(IUserNotFoundResponse.class);
+			}
 		}catch(UserNotExistsException e){
 			_response.set_Handler(IGetMessagesFaildResponse.class);
 		}

@@ -31,7 +31,7 @@ public class ChatDAL implements IChatDAL {
 		return _data.ContainsKey(username);
 			
 	}
-
+ 
 	@Override
 	public boolean RegisterUser(String username, String name, String password) {
 		boolean rs = false;
@@ -149,4 +149,9 @@ public class ChatDAL implements IChatDAL {
 	}
 	public class UserKeyMessagesNotFoundException extends RuntimeException{} 
 	public class AddMessageFaildException extends RuntimeException{}
+	@Override
+	public boolean IsUserOnline(String username) {
+		return _data.getUserData(username).get_status();
+		
+	}
 }

@@ -113,6 +113,11 @@ public class ChatDAL implements IChatDAL {
 	public ArrayList<Message> GetAllMessages(String key) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	@Override
+	public boolean IsUserOnline(String username) {
+		// TODO Auto-generated method stub
+		return false;
 	} 
 
 }

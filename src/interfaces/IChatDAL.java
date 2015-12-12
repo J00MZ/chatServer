@@ -16,7 +16,7 @@ public interface IChatDAL {
 	boolean GetUserStatus(String username);
 	ArrayList<UserDTO>getAllUsers();
 	boolean IsKeyUserExists(String username);
-	 
+	boolean IsUserOnline(String username);
 	boolean AddMessage(MessageDTO dto);
 	ArrayList<Message> GetAllMessages(String key);
 
