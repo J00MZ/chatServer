@@ -12,9 +12,7 @@ import DTO.Message;
 import DTO.MessageDTO;
 import DTO.RegistrationDTO;
 import DTO.UserDTO;
-import DTO.UsersListResultDTO;
-import InMemoryDAL.MessagesDAL.AddMessageFaildException;
-import InMemoryDAL.MessagesDAL.UserKeyMessagesNotFoundException;
+
 import interfaces.IChatDAL;
 
 public class ChatDAL implements IChatDAL {

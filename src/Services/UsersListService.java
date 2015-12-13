@@ -5,7 +5,6 @@ import interfaces.IGetAllUsersSucceededResponse;
 import interfaces.IUserNotFoundResponse;
 import interfaces.IUserNotLoggedinResponse;
 import interfaces.IUsersListService;
-import DTO.LoginDTO;
 import DTO.UsernameDTO;
 import DTO.UsersListResultDTO;
 import InMemoryDAL.ChatDAL;

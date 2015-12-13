@@ -1,20 +1,16 @@
 package Services;
 
-import interfaces.ILoginFaildResponse;
-import interfaces.ILoginService;
-import interfaces.ILoginSucceededResponse;
+
 import interfaces.IMessageService;
 import interfaces.ISendingMessageFaildResponse;
 import interfaces.ISendingMessageSucceededResponse;
 import interfaces.IUserNotFoundResponse;
 import interfaces.IUserNotLoggedinResponse;
-import DTO.LoginDTO;
-import DTO.LoginResultDTO;
+
 import DTO.MessageDTO;
 import DTO.MessageResultDTO;
 import InMemoryDAL.ChatDAL;
 import InMemoryDAL.ChatDAL.UserNotExistsException;
-import InMemoryDAL.MessagesDAL;
 import Kivun.Infra.DTO.ServiceMessage;
 import Kivun.Infra.Interfaces.IDTO;
 import Kivun.Infra.Interfaces.IServiceMessage;

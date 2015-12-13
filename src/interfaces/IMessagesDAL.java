@@ -1,9 +1,9 @@
 package interfaces;
 
-import java.util.ArrayList;
+
 
 import DTO.MessageDTO;
-import DTO.UserDTO;
+
 import InMemoryDAL.MessageData;
 
 

@@ -5,13 +5,11 @@ import java.util.ArrayList;
 import interfaces.IGetMessagesFaildResponse;
 import interfaces.IGetMessagesService;
 import interfaces.IGetMessagesSucceededResponse;
-import interfaces.ILoginFaildResponse;
-import interfaces.ILoginSucceededResponse;
+
 import interfaces.IUserNotFoundResponse;
 import interfaces.IUserNotLoggedinResponse;
 import DTO.GetMessagesDTO;
-import DTO.LoginDTO;
-import DTO.LoginResultDTO;
+
 import DTO.Message;
 import DTO.UserMessagesResultDTO;
 import InMemoryDAL.ChatDAL;
