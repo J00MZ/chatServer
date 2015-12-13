@@ -15,7 +15,7 @@ abstract public class BaseServlet extends HttpServlet{
 	protected IServicesFactory _servicesFactory;
 	@Override
 	public void init(ServletConfig servletConfig) throws ServletException {
-		System.out.println("=====>>>>>Initialized Chat sServer");
+		System.out.println("=====>>>>>Initialized Chat Server");
 		_servicesFactory = 		ServicesFactory.Instance();
 		super.init(servletConfig);
 		Enumeration<String> servicesNames = servletConfig.getInitParameterNames();
