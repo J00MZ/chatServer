@@ -79,11 +79,7 @@ public class ChatDAL implements IChatDAL {
 		return null;
 	}
 
-	@Override
-	public void UpdateUserStatus(String username, boolean status) {
-		// TODO Auto-generated method stub
-		
-	}
+
 
 	@Override
 	public boolean GetUserStatus(String username) {
@@ -118,6 +114,17 @@ public class ChatDAL implements IChatDAL {
 	public boolean IsUserOnline(String username) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+	@Override
+	public boolean validateuserAndPass(String uname, String pass) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	@Override
+	public void UpdateUserStatus(String username, String password,
+			boolean status) {
+		// TODO Auto-generated method stub
+		
 	} 
 
 }

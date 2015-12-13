@@ -5,14 +5,14 @@ import java.util.ArrayList;
 import interfaces.IGetMessagesFaildResponse;
 import interfaces.IGetMessagesService;
 import interfaces.IGetMessagesSucceededResponse;
-
+import interfaces.INotMessagesFoundResponse;
 import interfaces.IUserNotFoundResponse;
 import interfaces.IUserNotLoggedinResponse;
 import DTO.GetMessagesDTO;
-
 import DTO.Message;
 import DTO.UserMessagesResultDTO;
 import InMemoryDAL.ChatDAL;
+import InMemoryDAL.ChatDAL.UserKeyMessagesNotFoundException;
 import InMemoryDAL.ChatDAL.UserNotExistsException;
 import Kivun.Infra.DTO.ServiceMessage;
 import Kivun.Infra.Interfaces.IDTO;
@@ -46,9 +46,13 @@ public class GetMessagesService implements IGetMessagesService {
 		try{
 			if (_dal.IsUserExists(_dto.get_username())) {
 				if (_dal.IsUserOnline(_dto.get_username())) {
+					try{
 			ArrayList<Message> messages=_dal.GetAllMessages(_dto.get_username());
 			resultDTO.set_messages(messages);
 		_response.set_Handler(IGetMessagesSucceededResponse.class);
+					}catch(UserKeyMessagesNotFoundException e){
+						_response.set_Handler(INotMessagesFoundResponse.class);
+					}
 		_response.set_DTO(resultDTO);
 				}else{
 					_response.set_Handler(IUserNotLoggedinResponse.class);
