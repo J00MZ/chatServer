@@ -70,7 +70,7 @@ public class ChatServlet extends BaseServlet {
 		service.Execute();
 		try {
 			PrintWriter out = response.getWriter();
-			out.println("Hello to you all");
+		
 			out.println(service.get_Response());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
