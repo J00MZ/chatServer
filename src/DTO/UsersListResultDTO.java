@@ -13,7 +13,7 @@ public class UsersListResultDTO implements IDTO {
 public ArrayList<UserDTO> get_users() {
 	return _users;
 }
-@SetProperty(PropName = "sender")
+@SetProperty(PropName = "users")
 public void set_users(ArrayList<UserDTO> _users) {
 	this._users = _users;
 }
