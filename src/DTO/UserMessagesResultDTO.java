@@ -39,8 +39,9 @@ public class UserMessagesResultDTO implements IDTO {
 			}
 		}
 	
-		return arr.toString();
+		return arr.toString().replaceAll("\"", "");
 	}
+   
 	@SetProperty(PropName="messages")
 	public void set_messages(ArrayList<Message> _messages) {
 		this._messages = _messages;
